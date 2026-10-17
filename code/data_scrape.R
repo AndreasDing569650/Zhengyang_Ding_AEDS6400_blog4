@@ -1,6 +1,42 @@
 library(jsonlite)
 library(dplyr)
 
+# =============================================================================
+# File paths
+# =============================================================================
+
+project_path <- ".."
+
+raw_data_path <- file.path(
+  project_path,
+  "data",
+  "raw_data"
+)
+
+house_price_path <- file.path(
+  raw_data_path,
+  "house_price_raw.csv"
+)
+
+mortgage_rate_path <- file.path(
+  raw_data_path,
+  "mortgage_rate_raw.csv"
+)
+
+median_income_path <- file.path(
+  raw_data_path,
+  "median_income_raw.csv"
+)
+
+cpi_path <- file.path(
+  raw_data_path,
+  "cpi_raw.csv"
+)
+
+# =============================================================================
+# FRED API
+# =============================================================================
+
 api_key <- "b0e13cc0dc34627cceb4039dbd650349"
 
 get_fred_data <- function(series_id, api_key) {
@@ -79,24 +115,24 @@ range(cpi$date)
 
 write.csv(
   house_price,
-  "data/raw_data/house_price_raw.csv",
+  house_price_path,
   row.names = FALSE
 )
 
 write.csv(
   mortgage_rate,
-  "data/raw_data/mortgage_rate_raw.csv",
+  mortgage_rate_path,
   row.names = FALSE
 )
 
 write.csv(
   median_income,
-  "data/raw_data/median_income_raw.csv",
+  median_income_path,
   row.names = FALSE
 )
 
 write.csv(
   cpi,
-  "data/raw_data/cpi_raw.csv",
+  cpi_path,
   row.names = FALSE
 )
