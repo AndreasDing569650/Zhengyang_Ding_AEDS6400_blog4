@@ -1,21 +1,61 @@
 library(dplyr)
 
-data_folder <- "D:/Rproject/6400-blog4/data"
+project_path <- ".."
+
+data_folder <- file.path(
+  project_path,
+  "data"
+)
+
+raw_data_path <- file.path(
+  data_folder,
+  "raw_data"
+)
+
+cleaned_data_path <- file.path(
+  data_folder,
+  "cleaned_data"
+)
+
+house_price_path <- file.path(
+  raw_data_path,
+  "house_price_raw.csv"
+)
+
+mortgage_rate_path <- file.path(
+  raw_data_path,
+  "mortgage_rate_raw.csv"
+)
+
+median_income_path <- file.path(
+  raw_data_path,
+  "median_income_raw.csv"
+)
+
+cpi_path <- file.path(
+  raw_data_path,
+  "cpi_raw.csv"
+)
+
+housing_data_path <- file.path(
+  cleaned_data_path,
+  "housing_data.csv"
+)
 
 house_price <- read.csv(
-  file.path(data_folder, "raw_data", "house_price_raw.csv")
+  house_price_path
 )
 
 mortgage_rate <- read.csv(
-  file.path(data_folder, "raw_data", "mortgage_rate_raw.csv")
+  mortgage_rate_path
 )
 
 median_income <- read.csv(
-  file.path(data_folder, "raw_data", "median_income_raw.csv")
+  median_income_path
 )
 
 cpi <- read.csv(
-  file.path(data_folder, "raw_data", "cpi_raw.csv")
+  cpi_path
 )
 
 names(house_price)
@@ -148,6 +188,6 @@ colSums(is.na(housing_data))
 
 write.csv(
   housing_data,
-  file.path(data_folder, "housing_data.csv"),
+  housing_data_path,
   row.names = FALSE
 )
