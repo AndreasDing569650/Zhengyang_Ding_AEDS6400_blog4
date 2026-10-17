@@ -1,8 +1,45 @@
 library(ggplot2)
 library(dplyr)
 
+project_path <- ".."
+
+data_folder <- file.path(
+  project_path,
+  "data"
+)
+
+cleaned_data_path <- file.path(
+  data_folder,
+  "cleaned_data"
+)
+
+figure_path <- file.path(
+  project_path,
+  "figure"
+)
+
+housing_data_path <- file.path(
+  cleaned_data_path,
+  "housing_data.csv"
+)
+
+figure1_path <- file.path(
+  figure_path,
+  "figure1_real_house_price.png"
+)
+
+figure2_path <- file.path(
+  figure_path,
+  "figure2_mortgage_rate.png"
+)
+
+figure3_path <- file.path(
+  figure_path,
+  "figure3_price_income_ratio.png"
+)
+
 housing_data <- read.csv(
-  "D:/Rproject/6400-blog4/data/cleaned_data/housing_data.csv"
+  housing_data_path
 )
 
 housing_data$date <- as.Date(housing_data$date)
@@ -12,6 +49,10 @@ head(housing_data)
 str(housing_data)
 
 summary(housing_data)
+
+# =============================================================================
+# Figure 1: Real House Prices
+# =============================================================================
 
 ggplot(
   housing_data,
@@ -32,11 +73,15 @@ ggplot(
   theme_minimal()
 
 ggsave(
-  "D:/Rproject/6400-blog4/figure1_real_house_price.png",
+  figure1_path,
   width = 8,
   height = 5,
   dpi = 300
 )
+
+# =============================================================================
+# Figure 2: Mortgage Rates
+# =============================================================================
 
 ggplot(
   housing_data,
@@ -57,11 +102,15 @@ ggplot(
   theme_minimal()
 
 ggsave(
-  "D:/Rproject/6400-blog4/figure2_mortgage_rate.png",
+  figure2_path,
   width = 8,
   height = 5,
   dpi = 300
 )
+
+# =============================================================================
+# Figure 3: House-Price-to-Income Ratio
+# =============================================================================
 
 ggplot(
   housing_data,
@@ -82,7 +131,7 @@ ggplot(
   theme_minimal()
 
 ggsave(
-  "D:/Rproject/6400-blog4/figure3_price_income_ratio.png",
+  figure3_path,
   width = 8,
   height = 5,
   dpi = 300
